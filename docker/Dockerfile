@@ -21,12 +21,12 @@ RUN apt-get update && apt-get install -yq \
     php7.2-mbstring \
     php-yaml
 
-RUN rm /etc/posgresql/10/main/pg_hba.conf \
+RUN rm /etc/postgresql/10/main/pg_hba.conf \
     && cp /home/postgres/pg_hba.conf_trust /etc/postgresql/10/main/pg_hba.conf \
     && service postgresql start \
-    && psql -U postgres -c "ALTER USER postgres PASSWORD '12345':" \
+    && psql -U postgres -c "ALTER USER postgres PASSWORD '12345';" \
     && psql -U postgres -c "CREATE DATABASE intership;" \
-    && rm /etc/posgresql/11/main/pg_hba.conf \
+    && rm /etc/postgresql/10/main/pg_hba.conf \
     && cp /home/postgres/pg_hba.conf_md5 /etc/postgresql/10/main/pg_hba.conf \
     && echo "listen_addresses = '*'" >> /etc/postgresql/10/main/postgresql.conf
 
